@@ -1,4 +1,11 @@
-// 领域是ecma262规范规定的js顶层对象，用于定义js的内部对象和在不同宿主环境下的行为，如浏览器环境，node.js环境等（V8引擎是一种js的具体实现，不属于宿主环境）
+// 【领域】是ecma262规范规定的js顶层对象
+// 用于定义js的内部对象和在不同宿主环境下的行为
+// 如浏览器环境，node.js环境等（V8引擎是一种js的具体实现，不属于宿主环境）
+// @property [[Intrinsics]]:    领域的内置属性
+// @property [[GlobalObject]]:  领域的全局对象
+// @property [[GlobalEnv]]:     领域的全局环境
+// @property [[TemplateMap]]:   一个模板记录的列表，定义了代码节点和相应的对象
+// @property [[HostDefined]]:   领域的宿主额外定义
 
 // 以下的所有方法均为ecma-262规范的抽象方法，并非具体实现
 
