@@ -3,6 +3,7 @@
 // 当异步任务被创建时，任务被创建并推入【任务队列】中
 // 在当前的【执行上下文堆栈】为空且没有正在执行的【执行上下文】时任务才可以被执行
 // 【任务】会一直执行直到【任务队列】被清空为止
+import InitializeHostDefinedRealm from "./Realm.js"
 
 //初始化任务循环
 function RunJobs() {
@@ -28,7 +29,7 @@ function RunJobs() {
     //循环
     while (true) {
         //终止当前正在执行的执行上下文并将其移出执行上下文栈
-        Suspend(executionContextList, runningExecutionContext)
+        Suspend(executionContextStack, runningExecutionContext)
 
         //获取以任何方式实现的任务队列
         let nextQueue = JobQueue
@@ -80,3 +81,5 @@ function EnqueueJob(queueName, job, arguments) {
 
     return true
 }
+
+module.exports = RunJobs

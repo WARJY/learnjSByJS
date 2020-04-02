@@ -116,3 +116,5 @@ function SetDefaultGlobalBindings(realmRec) {
     }
     return global
 }
+
+module.exports = InitializeHostDefinedRealm
