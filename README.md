@@ -9,5 +9,6 @@
 -   [Job（任务）](https://github.com/WARJY/learnjSByJS/blob/master/src/Job.js)
 -   [ExecutionContexts（执行上下文）](https://github.com/WARJY/learnjSByJS/blob/master/src/ExecutionContexts.js)
 -   [LexicalEnvironment（词法环境）](https://github.com/WARJY/learnjSByJS/blob/master/src/LexicalEnvironment.js)
+-   [Script（脚本）](https://github.com/WARJY/learnjSByJS/blob/master/src/Script.js)
 
 本文参考ecma262 10.0版本规范编写
