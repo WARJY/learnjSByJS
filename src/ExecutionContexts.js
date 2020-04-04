@@ -4,7 +4,7 @@
 // 同一时间有且只有一个在栈顶的【执行上下文】或代理可以被执行
 // 当执行过程中出现了一段没有和当前上下文关联的代码，就创建一个新的执行上下文并推入栈顶
 // @state codeEvaluationState    表示当前执行上下文的状态：【执行】，【挂起】或者【恢复】
-// @state Function               表示当前执行上下文正在执行的【方法对象】，如果当前执行的不是Function，则为null
+// @state Function               表示当前执行上下文正在执行的【函数对象】，如果当前执行的不是Function，则为null
 // @state Realm                  表示当前执行上下文所属的【领域】
 // @state Script/Module          表示当前执行上下文正在执行的【Script记录】或【Module记录】，如果当前执行的不是Script或Module，则为null
 // @state LexicalEnvironment     表示当前执行上下文的【词法环境】
@@ -23,7 +23,7 @@ function GetThisEnvironment(){}
 //获取当前this的绑定
 function ResolveThisBinding(){}
 
-//获取当前语法环境的newTarget属性（是否通过call等方法改变了this指向）
+//获取当前语法环境的newTarget属性（是否通过call等函数改变了this指向）
 function GetNewTarget(){}
 
 //获取当前领域的全局对象

@@ -4,24 +4,24 @@
 
 // 【词法环境】共有三种：
 // 1.【全局词法环境】: 当领域被声明时创建的词法环境；
-// 2.【方法词法环境】: 当一个方法被声明时创建的词法环境；
+// 2.【函数词法环境】: 当一个函数被声明时创建的词法环境；
 // 3.【模块词法环境】: 当一个模块被声明时创建的词法环境；
 
 // 【词法环境记录】共有五种：
 // 1.【声明环境记录】: 当一个声明被声明时创建的环境记录，如let，const，function
 // 2.【对象环境记录】: 当一个标识符绑定与对象进行关联时创建的环境记录，如with(a){ key=value }；
 // 3.【全局环境记录】: 是声明环境记录的一种，最外部的词法环境记录，他的外部引用为空；
-// 4.【方法环境记录】: 是声明环境记录的一种，当一个方法被声明时创建的环境记录，如function(){}；
+// 4.【函数环境记录】: 是声明环境记录的一种，当一个函数被声明时创建的环境记录，如function(){}；
 // 5.【模块环境记录】: 是声明环境记录的一种，当一个模块被声明时创建的环境记录，如module.exports = {}；
 
-// 以下的所有方法均为ecma-262规范的抽象方法，并非具体实现
+// 以下的所有函数均为ecma-262规范的抽象函数，并非具体实现
 
 // 获取标识符引用
 // let a = 1
 // function b(){
 //     console.log(a)
 // }
-// 当b方法中需要获取a时，执行GetIdentifierReference(functionBLex, a, true)
+// 当b函数中需要获取a时，执行GetIdentifierReference(functionBLex, a, true)
 // b的环境记录中没有a的绑定，则向外部环境获取a的绑定，得到a的引用，打印1
 function GetIdentifierReference(lex, name, strict) {
     //如果没有传入词法环境，返回一个undefined引用
@@ -73,17 +73,17 @@ function NewGlobalEnvironment(E) {
     env.outerEnvironmentRecord = E
 }
 
-//创建一个方法词法环境
+//创建一个函数词法环境
 function NewGlobalEnvironment(F, newTarget) {
-    // 断言：F是一个方法
+    // 断言：F是一个函数
     // 断言：newTarget是一个对象或undefined
     let env = new LexicalEnvironment()
     let envRec = new FunctionEnvironmentRecord()
 
-    //导致环境记录被创建的方法
+    //导致环境记录被创建的函数
     envRec["[[FunctionObject]]"] = F
 
-    //该方法遵守词法环境调用规则
+    //该函数遵守词法环境调用规则
     if (F["[[ThisMode]]"] === "lexical") envRec["[[ThisBindingStatus]]"] = "lexical"
     else envRec["[[ThisBindingStatus]]"] = "uninitialized"
 

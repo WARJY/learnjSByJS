@@ -7,7 +7,7 @@
 // @property [[TemplateMap]]:   一个模板记录的列表，定义了代码节点和相应的对象
 // @property [[HostDefined]]:   领域的宿主额外定义
 
-// 以下的所有方法均为ecma-262规范的抽象方法，并非具体实现
+// 以下的所有函数均为ecma-262规范的抽象函数，并非具体实现
 
 //初始化宿主定义的领域：
 function InitializeHostDefinedRealm() {
@@ -66,10 +66,10 @@ function CreateIntrinsics(realmRec) {
     let objProto = Object.create(null)
     intrinsics["[[%ObjectPrototype%]]"] = objProto
 
-    //为领域注入内部方法，包括http://www.ecma-international.org/ecma-262/10.0/index.html#table-7
+    //为领域注入内部函数，包括http://www.ecma-international.org/ecma-262/10.0/index.html#table-7
     const IntrinsicsList = ["%Array%", "%ArrayBuffer%", ...intrinsics]
     IntrinsicsList.map(fun => {
-        //如：注入类型错误抛出方法
+        //如：注入类型错误抛出函数
         let steps = fun
         let thrower = CreateBuiltinFunction(steps, [], realmRec, null)
         intrinsics["[[%ThrowTypeError%]]"] = thrower
