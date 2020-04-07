@@ -220,3 +220,5 @@ function GlobalDeclarationInstantiation(script, env) {
 
     return true
 }
+
+module.exports = ScriptEvaluationJob

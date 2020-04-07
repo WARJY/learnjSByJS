@@ -2,6 +2,7 @@
 //ecmascript抽象运行时模型
 
 import RunJobs from "./Job.js"
+import ScriptEvaluationJob from "./Script.js"
 
 //创建一块共享内存区域
 let shareMemort = new SharedArrayBuffer(1024)
@@ -16,10 +17,13 @@ let ExecutionThread = new ExecutionThread("JSCORE")
 let ExecutionContextStack = new ExecutionContextStack()
 
 //初始化一个任务队列的集合
+let ScriptJobQueue = new JobQueue()
+let MacroJobQueue = new JobQueue()
+let MicroJobQueue = new JobQueue()
 let JobQueueSets = {
-    "ScriptJobQueue": new JobQueue(),
-    "MacroJobQueue": new JobQueue(),
-    "MicroJobQueue": new JobQueue(),
+    "ScriptJobQueue": ScriptJobQueue,
+    "MacroJobQueue": MacroJobQueue,
+    "MicroJobQueue": MicroJobQueue
 }
 
 //创建一个代理记录
@@ -34,6 +38,9 @@ let Agent = new Agent(ExecutionContextStack, JobQueueSets, AgentRecord, Executio
 
 //将代理推入代理集群中
 AgentCluster.push(Agent)
+
+//将脚本评估任务推入脚本任务队列
+ScriptJobQueue.push(ScriptEvaluationJob)
 
 //遍历代理并执行任务循环
 AgentCluster.forEach(Agent=>{
